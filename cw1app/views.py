@@ -59,8 +59,8 @@ def List(request):
                 }
                 MODULEINSTANCE['professors'].append(PROFESSOR)
 
+            print(MODULEINSTANCE['professors'])
             MODULEINSTANCES['moduleinstances'].append(MODULEINSTANCE)
-
         return HttpResponse(json.dumps(MODULEINSTANCES), content_type='application/json')
 
 
@@ -77,7 +77,7 @@ def View(request):
                     count += 1
             if count:
                 PROFESSOR = {
-                    'name': 'Professor ' + j.professor.firstname[0] + '. ' + j.professor.surname,
+                    'name': 'Professor ' + i.professor.firstname[0] + '. ' + i.professor.surname,
                     'rating': sum / count
                 }
                 PROFESSORS['professors'].append(PROFESSOR)
