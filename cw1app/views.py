@@ -87,9 +87,10 @@ def View(request):
 @csrf_exempt
 def Average(request):
     if request.method == 'POST':
-        professor_id = Professor.objects.get(code=request.POST.get('professor_code')).id
-        module_id    = Module.objects.get(code=request.POST.get('module_code')).id
-
+        professor = Professor.objects.get(code=request.POST.get('professor_code')).id
+        module    = Module.objects.get(code=request.POST.get('module_code')).id
+        professor_id = professor.id
+        module_id = module.id
 
         sum = 0
         count = 0
@@ -104,8 +105,8 @@ def Average(request):
             average = sum / count
 
         JSON = {
-            'professor_name': 'Professor ' + i.professor.firstname[0] + '. ' + i.professor.surname + ' ({})'.format(i.professor.code),
-            'module_name': i.moduleinstance.module.name + ' ({})'.format(i.moduleinstance.module.code),
+            'professor_name': 'Professor ' + professor.firstname[0] + '. ' + professor.surname + ' ({})'.format(professor.code),
+            'module_name': module.name + ' ({})'.format(module.code),
             'rating': average
         }
         return HttpResponse(json.dumps(JSON), content_type='application/json')
