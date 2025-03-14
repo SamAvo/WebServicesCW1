@@ -77,7 +77,7 @@ def View(request):
                     count += 1
             if count:
                 PROFESSOR = {
-                    'name': 'Professor ' + i.professor.firstname[0] + '. ' + i.professor.surname,
+                    'name': 'Professor ' + i.firstname[0] + '. ' + i.surname,
                     'rating': sum / count
                 }
                 PROFESSORS['professors'].append(PROFESSOR)
